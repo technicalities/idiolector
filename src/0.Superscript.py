@@ -52,18 +52,14 @@ verbosityLevel = "00001"
 configurationFileName = configurationFilePath + vectorType + "configparameters.cfg"
 
 
-###########################################################################################################################################
-
-
-
 #############################################################################################################################################
 
-		# 3. hmmInitialization.py - takes the model prototypes and yields flat-start models.
+# 6. hmmInitialization.py - takes the model prototypes and yields flat-start models.
 
 #  This script initialises all speakers' prototype hidden Markov models. 
 #  It is a 'flat' initialisation (each state set to same initial values) before the training process at script #5.
 
-
+os.system("06.hmmInitialization.py 1")
 # Model paths:
 modelPath = numStates + "State/" + vectorType + "/"
 rootModelsPath = rootDirectory + "5.Models/rootModels/" + modelPath
@@ -100,7 +96,7 @@ for index in range(len(speakerArray)):
 	
 #############################################################################################################################################
 
-		# 4. hmmAddingGaussians.py - multiplying the number of Gaussians for each model.
+# 4. hmmAddingGaussians.py - multiplying the number of Gaussians for each model.
 
 #  This script adds a number of Gaussians to the initialized Hidden Markov Models. 
 #  This will be either the whole HMM (if single-state) or the emission function of each state.
@@ -136,7 +132,7 @@ os.system(command)
 		
 #############################################################################################################################################
 
-		# 5. hmmTraining.py - training the models by embedded re-estimation
+# 5. hmmTraining.py - training the models by embedded re-estimation
 
 #   This script trains Hidden Markov Models through the expectation-maximisation algorithm, Baum-Welch re-estimation. 
 #   Input arguments are:
