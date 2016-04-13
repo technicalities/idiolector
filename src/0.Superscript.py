@@ -54,6 +54,11 @@ configurationFileName = configurationFilePath + vectorType + "configparameters.c
 
 #############################################################################################################################################
 
+# Take raw .wav files and split them by manual! annotation.
+os.system("01.getAudioSegments.py 1")
+
+
+#############################################################################################################################################
 # 6. hmmInitialization.py - takes the model prototypes and yields flat-start models.
 
 #  This script initialises all speakers' prototype hidden Markov models. 
@@ -171,7 +176,7 @@ for index in range(len(speakerArray)):
 
 #############################################################################################################################################
 
-		# 6. getLattice - parse the task grammar and verify the model syntax.
+		# 8b. getLattice - parse the task grammar and verify the model syntax.
 
 # This script builds a word-recognition network from the Backus-Naur grammar.
 # In our case, it is a very simple lattice, involving one 'word' (the speaker model).
