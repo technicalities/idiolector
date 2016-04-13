@@ -8,7 +8,7 @@ import wave
 #  The input parameters are:
 # 		1) Labb-cat data as csv file.
 # 		2) Name of original .wav conversation file
-# 	The outputs are:
+#  The outputs are:
 # 		1) an individual .wav audio file for every word.
 
 
@@ -18,7 +18,7 @@ taskArray = ["raB_1_", "raB_2_", "raB_3_", "raB_4_",
 			"raS_1_", "raS_2_", "raS_3_", "raS_4_"]
 
 # Initialization
-rootDirectory = "F:/Accommodation/Files/"
+rootDirectory = # your root
 labbCatPath = rootDirectory + "1.LaBB-CAT/"
 audioFilePath = rootDirectory + "wavReal/"								# NB: Folder is large, 2GB. Included separately, as Dropbox folder.
 wavWordsPath = rootDirectory + "2.WavWords/"
