@@ -6,6 +6,8 @@ import scipy.stats
 # A script unifying all the scripts, calling the HTK tools in sequence with the appropriate file paths:
 # this takes us from wav files segmented by word, to 132 speaker-pair likelihood-ratio correlations. 
 
+# Scripts work by file-system side-effects; huge multi-gigabyte output precludes anything else but a systems programming task.
+
 # Stages:
 # 1. getFeatureVectors.py - creates vectors from .wav files
 # 2. getLabelsFromVectors.py - derives labels from the vector files
@@ -54,27 +56,18 @@ configurationFileName = configurationFilePath + vectorType + "configparameters.c
 
 #############################################################################################################################################
 
-# Take raw .wav files and split them by manual! annotation.
+# Take raw .wav files and split them by manual! annotation. (Alternative, low-prob split by silences also possible)
 os.system("01.getAudioSegments.py 1")
 
+# This script creates the label files associated to the wav files
+os.system("03.getLabels.py 1")
 
-#############################################################################################################################################
 # 6. hmmInitialization.py - takes the model prototypes and yields flat-start models.
-
 #  This script initialises all speakers' prototype hidden Markov models. 
 #  It is a 'flat' initialisation (each state set to same initial values) before the training process at script #5.
-
 os.system("06.hmmInitialization.py 1")
 # Model paths:
-modelPath = numStates + "State/" + vectorType + "/"
-rootModelsPath = rootDirectory + "5.Models/rootModels/" + modelPath
-initializedModelsPath = rootDirectory + "5.Models/initializedModels/" + modelPath
-mixtureModelsPath = rootDirectory + "5.Models/mixtureModels/" + modelPath
-trainedModelsPath = rootDirectory + "5.Models/trainedModels/" + modelPath
-trainedModelsName = trainedModelsPath + "/iter10/newMacros" 						#  The location of the models after all training iterations and mixing.				
 
-trainingDataPath = rootDirectory + "Lists/TrainingDataLists/" + vectorType + "/"
-testPath = rootDirectory + "Lists/TestDataLists/" + vectorType +"/"	
 
 
 # Initialization of the models (computation of global means and variances for GMM components).
